@@ -3,19 +3,23 @@
   "name": "vue3-learn",
   "workspaces": [
     "packages/*"
-  ], 
+  ],
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:parrot-design/vue3-learn.git",
   "author": "wujiabao <wujiabao@leateckgroup.com>",
   "scripts": {
-    "build": "node scripts/build.js"
+    "build": "node scripts/build.js",
+    "dev": "node scripts/dev.js",
+    "example": "nodemon scripts/example.js"
   },
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
     "execa": "^5.1.1",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1",
     "rollup": "^2.56.3",
     "rollup-plugin-typescript2": "^0.30.0",
     "typescript": "^4.4.2"

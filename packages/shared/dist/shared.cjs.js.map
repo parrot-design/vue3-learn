@@ -1,0 +1,1 @@
+{"version":3,"file":"shared.cjs.js","sources":["../src/index.ts"],"sourcesContent":["// 判断是否是对象\nexport function isObject(target) {\n    return target !== null && typeof target === \"object\"\n}\n\n "],"names":[],"mappings":";;;;AAAA;AACM,SAAU,QAAQ,CAAC,MAAM,EAAA;IAC3B,OAAO,MAAM,KAAK,IAAI,IAAI,OAAO,MAAM,KAAK,QAAQ,CAAA;AACxD;;;;"}

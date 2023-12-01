@@ -10,7 +10,6 @@ const dirs = fs.readdirSync('packages').filter(p=>{
 });
 
 //2.并行打包 ==================================================================
- 
 runParallel(dirs,build).then(()=>{
     console.log("成功！")
 });
