@@ -31,14 +31,14 @@ function createReactObj(target,isReadonly,baseHandlers){
         return target;
     }
     //代理成功后不需要再代理
-    const proxymap = isReadonly ? readonlyMap : reactiveMap;
-    const proxyEs = proxymap.get(target);//如果有值
+    const proxyMap = isReadonly ? readonlyMap : reactiveMap;
+    const proxyEs = proxyMap.get(target);//如果有值
     if(proxyEs){
         return proxyEs;
     }
     const proxy = new Proxy(target,baseHandlers);
     // 代理后存入map中
-    proxymap.set(target, proxy)
+    proxyMap.set(target, proxy)
     return proxy;
 }
 

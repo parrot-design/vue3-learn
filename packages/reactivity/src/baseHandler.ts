@@ -1,5 +1,7 @@
 import { isObject } from "@vue/shared";
 import { reactive,readonly } from "./reactive";
+import { TrackOpTypes } from "./operations";
+import { Track } from "./effect";
 
 const get = createGetter();
 const shallowGet = createGetter(false, true);
@@ -17,22 +19,27 @@ function createGetter(isReadonly=false,shallow=false){
         if(!isReadonly){
             //是否只读
             //收集依赖
+            Track(target,TrackOpTypes.GET,key);
         }
         if(shallow){
             //浅层代理
             return res;
         }
-        //res 是一个对象 递归 懒代理
+        //res 是一个对象 递归 懒代理?
         if(isObject(res)){
-            return isReadonly ? readonly(res):reactive(res);
+            return isReadonly ? readonly(res) : reactive(res);
         }
         return res;
     }
 }
 //set方法
 function createSetter(shallow=false){
-    
-}
+    return function set(target,key,value,receiver){
+        const result = Reflect.set(target, key, value, receiver);
+
+        return result;
+    }
+}+
 
 export const reactiveHandlers = {
     get,
@@ -44,10 +51,17 @@ export const shallowReactiveHandlers = {
     set: shallowSet,
 }
 
-export const readonlyHandlers = {
+// 进行set方法合并
+let readonlyObj = {
+    set: (target, key, value) => {
+      console.log(`set ${value} on key: ${key} is faild`)
+    },
+}
 
+export const readonlyHandlers = {
+    get:readonlyGet,
 }
 
 export const shallowReadonlyHandlers = {
-
+    get:shallowReadonlyGet
 }
